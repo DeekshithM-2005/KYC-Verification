@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  
+  --color-background-dark: #0f172a;
+  --color-surface-dark: #1e293b;
+  --color-surface-hover: #334155;
+  
+  --color-border-dark: #334155;
+}
+
+@layer base {
+  body {
+    @apply bg-background-dark text-slate-100 antialiased font-sans;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-surface-dark/80 backdrop-blur-md border border-border-dark rounded-xl shadow-xl;
+  }
+}

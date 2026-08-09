@@ -1,0 +1,42 @@
+[
+  {
+    "case": "Register and Login Users",
+    "status": "PASS",
+    "detail": "Tokens received"
+  },
+  {
+    "case": "Citizen Upload Document",
+    "status": "PASS",
+    "detail": "Tx Hash: 0xad6b3348a8c6bb000a615e29f25a4893d72a4ab8e5e802a81181b421129b2ea7"
+  },
+  {
+    "case": "Duplicate KYC Upload Prevention",
+    "status": "PASS",
+    "detail": "Correctly rejected duplicate"
+  },
+  {
+    "case": "Company Request Access",
+    "status": "PASS",
+    "detail": "Request created: 6a70dd3f1a41e89538f04365"
+  },
+  {
+    "case": "Citizen Approve Access",
+    "status": "PASS",
+    "detail": "Approved"
+  },
+  {
+    "case": "Verify Document Integrity (Match)",
+    "status": "PASS",
+    "detail": "Match successful"
+  },
+  {
+    "case": "Tamper Detection (Mismatch)",
+    "status": "PASS",
+    "detail": "Successfully detected tamper"
+  },
+  {
+    "case": "Expired/Invalid JWT",
+    "status": "PASS",
+    "detail": "Rejected correctly"
+  }
+]

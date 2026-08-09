@@ -1,0 +1,90 @@
+{
+  "info": {
+    "name": "Decentralized KYC API",
+    "description": "API collection for Decentralized KYC Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice\",\n  \"email\": \"alice@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"Citizen\",\n  \"walletAddress\": \"0x1111111111111111111111111111111111111111\"\n}"
+            },
+            "url": {"raw": "{{baseUrl}}/api/auth/register", "host": ["{{baseUrl}}"], "path": ["api", "auth", "register"]}
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"alice@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {"raw": "{{baseUrl}}/api/auth/login", "host": ["{{baseUrl}}"], "path": ["api", "auth", "login"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "KYC",
+      "item": [
+        {
+          "name": "Upload Document",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{citizenToken}}"}, {"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"documentData\": \"Secret Data\",\n  \"userId\": \"{{citizenId}}\"\n}"
+            },
+            "url": {"raw": "{{baseUrl}}/api/kyc/upload-document", "host": ["{{baseUrl}}"], "path": ["api", "kyc", "upload-document"]}
+          }
+        },
+        {
+          "name": "Request Access",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{companyToken}}"}, {"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"citizenId\": \"{{citizenId}}\"\n}"
+            },
+            "url": {"raw": "{{baseUrl}}/api/kyc/request-access", "host": ["{{baseUrl}}"], "path": ["api", "kyc", "request-access"]}
+          }
+        },
+        {
+          "name": "Approve Access",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{citizenToken}}"}, {"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestId\": \"{{requestId}}\"\n}"
+            },
+            "url": {"raw": "{{baseUrl}}/api/kyc/approve-access", "host": ["{{baseUrl}}"], "path": ["api", "kyc", "approve-access"]}
+          }
+        },
+        {
+          "name": "Verify Document (Integrity)",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{companyToken}}"}],
+            "url": {"raw": "{{baseUrl}}/api/kyc/verify/{{citizenId}}", "host": ["{{baseUrl}}"], "path": ["api", "kyc", "verify", "{{citizenId}}"]}
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {"key": "baseUrl", "value": "http://localhost:5000"}
+  ]
+}

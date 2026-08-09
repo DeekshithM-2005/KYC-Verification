@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts\KYCContract.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> KYCContract.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>35/35</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">85.71% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>48/56</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>13/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>47/47</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+&nbsp;
+/**
+ * @title KYCContract
+ * @notice Decentralized KYC verification contract.
+ *         Stores document hashes and IPFS CIDs on-chain, manages KYC verification
+ *         status, and handles consent-based access control between citizens and companies.
+ * @dev No raw documents are ever stored on-chain — only SHA-256 hashes and IPFS content
+ *      identifiers. Actual encrypted documents reside on IPFS via Pinata.
+ */
+contract KYCContract {
+    // ──────────────────────────────────────────────
+    //  State Variables
+    // ──────────────────────────────────────────────
+&nbsp;
+    address public owner;
+&nbsp;
+    struct Document {
+        bytes32 docHash;       // SHA-256 hash of the original (unencrypted) document
+        string  ipfsCID;       // IPFS content identifier for the encrypted document
+        bool    isVerified;    // Whether a verifier has approved this KYC
+        bool    isRejected;    // Whether a verifier has rejected this KYC
+        bool    exists;        // Whether a document has been registered
+        string  kycId;         // Unique KYC identifier assigned upon verification
+    }
+&nbsp;
+    /// @notice Citizen address → their submitted document record
+    mapping(address =&gt; Document) public documents;
+&nbsp;
+    /// @notice KYC ID string → citizen address (reverse lookup)
+    mapping(string =&gt; address) public kycIdToCitizen;
+&nbsp;
+    /// @notice KYC ID → (company address → access granted)
+    mapping(string =&gt; mapping(address =&gt; bool)) public accessPermissions;
+&nbsp;
+    /// @notice Authorized verifier addresses
+    mapping(address =&gt; bool) public verifiers;
+&nbsp;
+    // ──────────────────────────────────────────────
+    //  Events
+    // ──────────────────────────────────────────────
+&nbsp;
+    event DocumentRegistered(
+        address indexed citizen,
+        bytes32 docHash,
+        string  ipfsCID
+    );
+&nbsp;
+    event KYCVerified(
+        address indexed citizen,
+        string  kycId,
+        address indexed verifier
+    );
+&nbsp;
+    event KYCRejected(
+        address indexed citizen,
+        address indexed verifier
+    );
+&nbsp;
+    event AccessRequested(
+        string  indexed kycId,
+        address indexed company
+    );
+&nbsp;
+    event AccessApproved(
+        string  indexed kycId,
+        address indexed citizen,
+        address indexed company
+    );
+&nbsp;
+    event AccessRevoked(
+        string  indexed kycId,
+        address indexed citizen,
+        address indexed company
+    );
+&nbsp;
+    event VerifierAdded(address indexed verifier);
+    event VerifierRemoved(address indexed verifier);
+&nbsp;
+    // ──────────────────────────────────────────────
+    //  Modifiers
+    // ──────────────────────────────────────────────
+&nbsp;
+    modifier onlyOwner() {
+        require(msg.sender == owner, "KYC: caller is not the owner");
+        _;
+    }
+&nbsp;
+    modifier onlyVerifier() {
+        require(verifiers[msg.sender], "KYC: caller is not an authorized verifier");
+        _;
+    }
+&nbsp;
+    // ──────────────────────────────────────────────
+    //  Constructor
+    // ──────────────────────────────────────────────
+&nbsp;
+    constructor() {
+        owner = msg.sender;
+    }
+&nbsp;
+    // ──────────────────────────────────────────────
+    //  Admin Functions
+    // ──────────────────────────────────────────────
+&nbsp;
+    /**
+     * @notice Add an address as an authorized verifier.
+     * @param _verifier The address to authorize.
+     */
+    function addVerifier(address _verifier) external onlyOwner {
+        require(_verifier != address(0), "KYC: zero address");
+        require(!verifiers[_verifier], "KYC: already a verifier");
+        verifiers[_verifier] = true;
+        emit VerifierAdded(_verifier);
+    }
+&nbsp;
+    /**
+     * @notice Remove an address from authorized verifiers.
+     * @param _verifier The address to de-authorize.
+     */
+    function removeVerifier(address _verifier) external <span class="missing-if-branch" title="else path not taken" >E</span>onlyOwner {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(verifiers[_verifier], "KYC: not a verifier");
+        verifiers[_verifier] = false;
+        emit VerifierRemoved(_verifier);
+    }
+&nbsp;
+    // ──────────────────────────────────────────────
+    //  Citizen Functions
+    // ──────────────────────────────────────────────
+&nbsp;
+    /**
+     * @notice Register a document on-chain by storing its hash and IPFS CID.
+     * @param _docHash  SHA-256 hash of the original document (pre-encryption).
+     * @param _ipfsCID  IPFS content identifier of the encrypted document.
+     */
+    function registerDocument(bytes32 _docHash, string calldata _ipfsCID) external {
+        require(!documents[msg.sender].exists, "KYC: document already registered");
+        require(_docHash != bytes32(0), "KYC: invalid document hash");
+        require(bytes(_ipfsCID).length &gt; 0, "KYC: empty IPFS CID");
+&nbsp;
+        documents[msg.sender] = Document({
+            docHash:    _docHash,
+            ipfsCID:    _ipfsCID,
+            isVerified: false,
+            isRejected: false,
+            exists:     true,
+            kycId:      ""
+        });
+&nbsp;
+        emit DocumentRegistered(msg.sender, _docHash, _ipfsCID);
+    }
+&nbsp;
+    /**
+     * @notice Citizen approves a company's access request for their KYC.
+     * @param _kycId      The citizen's KYC identifier.
+     * @param _company    The company address being granted access.
+     */
+    function approveAccess(string calldata _kycId, address _company) external {
+        require(kycIdToCitizen[_kycId] == msg.sender, "KYC: not the owner of this KYC ID");
+        require(_company != address(0), "KYC: zero address");
+        require(!accessPermissions[_kycId][_company], "KYC: access already granted");
+&nbsp;
+        accessPermissions[_kycId][_company] = true;
+&nbsp;
+        emit AccessApproved(_kycId, msg.sender, _company);
+    }
+&nbsp;
+    /**
+     * @notice Citizen revokes a company's previously granted access.
+     * @param _kycId      The citizen's KYC identifier.
+     * @param _company    The company address whose access is being revoked.
+     */
+    function revokeAccess(string calldata _kycId, address _company) external {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(kycIdToCitizen[_kycId] == msg.sender, "KYC: not the owner of this KYC ID");
+        require(accessPermissions[_kycId][_company], "KYC: access not granted");
+&nbsp;
+        accessPermissions[_kycId][_company] = false;
+&nbsp;
+        emit AccessRevoked(_kycId, msg.sender, _company);
+    }
+&nbsp;
+    // ──────────────────────────────────────────────
+    //  Verifier Functions
+    // ──────────────────────────────────────────────
+&nbsp;
+    /**
+     * @notice Verifier approves a citizen's KYC and assigns a unique KYC ID.
+     * @param _citizen  The citizen's address.
+     * @param _kycId    The unique KYC identifier to assign.
+     */
+    function verifyKYC(address _citizen, string calldata _kycId) external onlyVerifier {
+        require(documents[_citizen].exists, "KYC: no document registered");
+        require(!documents[_citizen].isVerified, "KYC: already verified");
+        require(!documents[_citizen].isRejected, "KYC: already rejected");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(bytes(_kycId).length &gt; 0, "KYC: empty KYC ID");
+        require(kycIdToCitizen[_kycId] == address(0), "KYC: KYC ID already in use");
+&nbsp;
+        documents[_citizen].isVerified = true;
+        documents[_citizen].kycId = _kycId;
+        kycIdToCitizen[_kycId] = _citizen;
+&nbsp;
+        emit KYCVerified(_citizen, _kycId, msg.sender);
+    }
+&nbsp;
+    /**
+     * @notice Verifier rejects a citizen's KYC submission.
+     * @param _citizen  The citizen's address.
+     */
+    function rejectKYC(address _citizen) external <span class="missing-if-branch" title="else path not taken" >E</span>onlyVerifier {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(documents[_citizen].exists, "KYC: no document registered");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(!documents[_citizen].isVerified, "KYC: already verified");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(!documents[_citizen].isRejected, "KYC: already rejected");
+&nbsp;
+        documents[_citizen].isRejected = true;
+&nbsp;
+        emit KYCRejected(_citizen, msg.sender);
+    }
+&nbsp;
+    // ──────────────────────────────────────────────
+    //  Company Functions
+    // ──────────────────────────────────────────────
+&nbsp;
+    /**
+     * @notice Company requests access to a citizen's verified KYC.
+     *         This emits an event that the backend listens for to create a notification.
+     * @param _kycId  The KYC identifier to request access for.
+     */
+    function requestAccess(string calldata _kycId) external {
+        require(kycIdToCitizen[_kycId] != address(0), "KYC: invalid KYC ID");
+        require(kycIdToCitizen[_kycId] != msg.sender, "KYC: cannot request own KYC");
+&nbsp;
+        emit AccessRequested(_kycId, msg.sender);
+    }
+&nbsp;
+    // ──────────────────────────────────────────────
+    //  View Functions
+    // ──────────────────────────────────────────────
+&nbsp;
+    /**
+     * @notice Check whether a company has access to a citizen's KYC.
+     * @param _kycId    The KYC identifier.
+     * @param _company  The company address to check.
+     * @return True if access is currently granted.
+     */
+    function checkAccess(string calldata _kycId, address _company) external view returns (bool) {
+        return accessPermissions[_kycId][_company];
+    }
+&nbsp;
+    /**
+     * @notice Retrieve the document hash and IPFS CID for a citizen.
+     * @param _citizen  The citizen's address.
+     * @return docHash  The SHA-256 hash of the original document.
+     * @return ipfsCID  The IPFS content identifier of the encrypted document.
+     * @return isVerified  Whether the KYC is verified.
+     * @return kycId    The assigned KYC identifier (empty if not yet verified).
+     */
+    function getDocument(address _citizen)
+        external
+        view
+        returns (
+            bytes32 docHash,
+            string memory ipfsCID,
+            bool isVerified,
+            string memory kycId
+        )
+    {
+        require(documents[_citizen].exists, "KYC: no document registered");
+        Document storage doc = documents[_citizen];
+        return (doc.docHash, doc.ipfsCID, doc.isVerified, doc.kycId);
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 03 2026 23:43:33 GMT+0530 (India Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
