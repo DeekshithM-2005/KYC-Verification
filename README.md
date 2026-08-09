@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Decentralized KYC Platform
 
 A blockchain-anchored identity verification framework that lets citizens submit KYC documents once, verified immutably on-chain, and share them with any requesting company through explicit, revocable consent — without any central authority holding raw data.
@@ -122,3 +123,6 @@ A GitHub Actions workflow is provided at `.github/workflows/azure-deploy.yml` to
 ## License
 
 MIT
+=======
+# KYC-Verification
+>>>>>>> dbb8d6fa4505e24bbce495234d7f99193e065f4e
