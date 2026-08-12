@@ -14,7 +14,10 @@ api.interceptors.response.use(
   (error) => {
     if (error.response && error.response.status === 401) {
       localStorage.removeItem('user');
-      window.location.href = '/login';
+      // Only redirect if we are not already on the login page and the request wasn't the initial /auth/me check
+      if (window.location.pathname !== '/login' && window.location.pathname !== '/register' && !error.config.url.includes('/auth/me')) {
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }

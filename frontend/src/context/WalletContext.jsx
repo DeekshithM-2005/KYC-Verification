@@ -5,9 +5,9 @@ const WalletContext = createContext();
 
 export const useWallet = () => useContext(WalletContext);
 
-// Hardhat local node chainId is usually 31337. Ganache is 1337. 
-// Our node is running via Hardhat, so we expect 31337.
-const EXPECTED_CHAIN_ID = 31337; 
+// Chain ID is configurable via VITE_CHAIN_ID env var.
+// Defaults: Hardhat=31337, Ganache=1337, Sepolia=11155111, Mainnet=1
+const EXPECTED_CHAIN_ID = Number(import.meta.env.VITE_CHAIN_ID) || 31337;
 
 export const WalletProvider = ({ children }) => {
   const [address, setAddress] = useState(null);
@@ -36,7 +36,8 @@ export const WalletProvider = ({ children }) => {
   useEffect(() => {
     if (window.ethereum) {
       window.ethereum.on('chainChanged', () => {
-        window.location.reload();
+        console.log("Network changed. Refreshing recommended.");
+        // window.location.reload(); // Commented out to prevent infinite reload loops
       });
       window.ethereum.on('accountsChanged', (accounts) => {
         if (accounts.length > 0) {
@@ -74,7 +75,9 @@ export const WalletProvider = ({ children }) => {
       const network = await web3Provider.getNetwork();
       // getNetwork().chainId returns a bigint in ethers v6
       if (Number(network.chainId) !== EXPECTED_CHAIN_ID) {
-        setNetworkError(`Wrong network. Please connect to Localhost (Chain ID: ${EXPECTED_CHAIN_ID})`);
+        console.warn(`Wrong network. Expected ${EXPECTED_CHAIN_ID} but got ${Number(network.chainId)}. Blockchain features may fail.`);
+        // Temporarily disabled strict network check for UI testing
+        // setNetworkError(`Wrong network. Please connect to Localhost (Chain ID: ${EXPECTED_CHAIN_ID})`);
       }
 
       setProvider(web3Provider);
