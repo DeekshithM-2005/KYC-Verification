@@ -120,9 +120,4 @@ A GitHub Actions workflow is provided at `.github/workflows/azure-deploy.yml` to
 3. Add the Publish Profile as a GitHub Secret named `AZUREAPPSERVICE_PUBLISHPROFILE` in your repository.
 4. Push to the `main` branch.
 
-## License
 
-MIT
-=======
-# KYC-Verification
->>>>>>> dbb8d6fa4505e24bbce495234d7f99193e065f4e
