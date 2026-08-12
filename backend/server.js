@@ -30,7 +30,7 @@ app.use(
 // Rate limiter — general API
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100,                  // 100 requests per window
+  max: process.env.NODE_ENV === "production" ? 100 : 10000, // higher limit for dev
   message: { error: "Too many requests, please try again later." },
 });
 app.use("/api/", generalLimiter);

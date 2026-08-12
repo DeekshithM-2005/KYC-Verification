@@ -6,16 +6,34 @@ dotenv.config();
 // Load the compiled KYCRegistry ABI dynamically from the contracts project
 const KYCRegistryArtifact = require("../../contracts/artifacts/contracts/KYCRegistry.sol/KYCRegistry.json");
 
-// Initialize Provider and Signer
-const provider = new ethers.JsonRpcProvider(process.env.GANACHE_URL);
-const signer = new ethers.Wallet(process.env.DEPLOYER_PRIVATE_KEY, provider);
+// Initialize Provider, Signer, and Contract (gracefully handles missing/invalid config)
+let provider = null;
+let signer = null;
+let kycContract = null;
+let blockchainReady = false;
 
-// Initialize Contract Instance
-const kycContract = new ethers.Contract(
-  process.env.CONTRACT_ADDRESS,
-  KYCRegistryArtifact.abi,
-  signer
-);
+try {
+  provider = new ethers.JsonRpcProvider(process.env.GANACHE_URL);
+  signer = new ethers.Wallet(process.env.DEPLOYER_PRIVATE_KEY, provider);
+  kycContract = new ethers.Contract(
+    process.env.CONTRACT_ADDRESS,
+    KYCRegistryArtifact.abi,
+    signer
+  );
+  blockchainReady = true;
+  console.log("✅ Blockchain service initialized successfully");
+} catch (error) {
+  console.warn("⚠️  Blockchain service not available:", error.shortMessage || error.message);
+  console.warn("   Auth (login/register) will still work, but blockchain features are disabled.");
+  console.warn("   Fix: Set a valid DEPLOYER_PRIVATE_KEY (64 hex chars) in your .env file.");
+}
+
+// Helper to check if blockchain is ready before any call
+function ensureBlockchain() {
+  if (!blockchainReady) {
+    throw new Error("Blockchain service is not configured. Set a valid DEPLOYER_PRIVATE_KEY in .env.");
+  }
+}
 
 /**
  * Registers a KYC document hash on the blockchain.
@@ -26,6 +44,7 @@ const kycContract = new ethers.Contract(
  */
 async function registerKYC(hash, ipfsCID, userId) {
   try {
+    ensureBlockchain();
     const tx = await kycContract.registerKYC(hash, ipfsCID, userId);
     const receipt = await tx.wait();
     return receipt.hash;
@@ -43,6 +62,7 @@ async function registerKYC(hash, ipfsCID, userId) {
  */
 async function requestAccess(companyAddress, userId) {
   try {
+    ensureBlockchain();
     const tx = await kycContract.requestAccess(companyAddress, userId);
     const receipt = await tx.wait();
     return receipt.hash;
@@ -60,6 +80,7 @@ async function requestAccess(companyAddress, userId) {
  */
 async function approveAccess(userId, companyAddress) {
   try {
+    ensureBlockchain();
     const tx = await kycContract.approveAccess(userId, companyAddress);
     const receipt = await tx.wait();
     return receipt.hash;
@@ -76,6 +97,7 @@ async function approveAccess(userId, companyAddress) {
  */
 async function checkKYCStatus(userId) {
   try {
+    ensureBlockchain();
     return await kycContract.checkKYCStatus(userId);
   } catch (error) {
     console.error("Blockchain Service Error (checkKYCStatus):", error);
@@ -90,6 +112,7 @@ async function checkKYCStatus(userId) {
  */
 async function getKYCRecord(userId) {
   try {
+    ensureBlockchain();
     const record = await kycContract.kycRecords(userId);
     return {
       docHash: record.docHash,
